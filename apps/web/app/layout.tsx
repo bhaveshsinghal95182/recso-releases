@@ -18,7 +18,7 @@ const siteUrl = rawSiteUrl.match(/^https?:\/\//i)
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Recso",
+    default: "Recso - Record, Edit, and Export Demo Videos with Ease",
     template: "%s | Recso",
   },
   description:
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "Recso",
-    title: "Recso",
+    title: "Recso - Record, Edit, and Export Demo Videos with Ease",
     description:
       "Recso helps you record, edit, and export polished demo videos quickly.",
     images: [
       {
-        url: "/social.png",
+        url: "/social_com.jpg",
         width: 1200,
         height: 630,
         alt: "Recso",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Recso",
+    title: "Recso - Record, Edit, and Export Demo Videos with Ease",
     description:
       "Recso helps you record, edit, and export polished demo videos quickly.",
     images: ["/social_com.jpg"],
