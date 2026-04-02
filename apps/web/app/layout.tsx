@@ -8,7 +8,12 @@ import ReactLenis from "lenis/react"
 import SiteLayout from "@workspace/ui/layout/root-layout"
 import { Analytics } from "@vercel/analytics/next"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+const rawSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ?? "http://localhost:3000"
+
+const siteUrl = rawSiteUrl.match(/^https?:\/\//i)
+  ? rawSiteUrl
+  : `https://${rawSiteUrl}`
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
