@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     template: "%s | Recso",
   },
   description:
-    "Recso helps you record, edit, and export polished demo videos quickly.",
+    "Recso helps you record, edit, and export polished demo videos quickly with a simple workflow that keeps the whole process fast, clear, and easy to manage.",
   openGraph: {
     type: "website",
     url: "/",
     siteName: "Recso",
     title: "Recso - Record, Edit, and Export Demo Videos with Ease",
     description:
-      "Recso helps you record, edit, and export polished demo videos quickly.",
+      "Recso helps you record, edit, and export polished demo videos quickly with a simple workflow that keeps the whole process fast, clear, and easy to manage.",
     images: [
       {
         url: "/social_com.jpg",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Recso - Record, Edit, and Export Demo Videos with Ease",
     description:
-      "Recso helps you record, edit, and export polished demo videos quickly.",
+      "Recso helps you record, edit, and export polished demo videos quickly with a simple workflow that keeps the whole process fast, clear, and easy to manage.",
     images: ["/social_com.jpg"],
   },
   icons: {
