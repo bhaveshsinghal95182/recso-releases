@@ -1,6 +1,6 @@
-"use client";
-import React, { useEffect, useRef, useCallback, useMemo } from 'react'
-import { gsap } from 'gsap'
+"use client"
+import React, { useEffect, useRef, useCallback, useMemo } from "react"
+import { gsap } from "gsap"
 
 export interface TargetCursorProps {
   targetSelector?: string
@@ -12,7 +12,7 @@ export interface TargetCursorProps {
 }
 
 const TargetCursor: React.FC<TargetCursorProps> = ({
-  targetSelector = '.cursor-target',
+  targetSelector = ".cursor-target",
   spinDuration = 2,
   hideDefaultCursor = true,
   hoverDuration = 0.2,
@@ -27,7 +27,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   const isActiveRef = useRef(false)
   const activeTargetRef = useRef<Element | null>(null)
   const targetCornerPositionsRef = useRef<{ x: number; y: number }[] | null>(
-    null,
+    null
   )
   const targetCenterValuesRef = useRef<{ x: number; y: number } | null>(null)
   const tickerFnRef = useRef<(() => void) | null>(null)
@@ -37,20 +37,20 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   const allTargetsRef = useRef<Element[]>([])
 
   const isMobile = useMemo(() => {
-    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    if (typeof window === "undefined" || typeof navigator === "undefined") {
       return false
     }
 
     const isSmallScreen = window.innerWidth <= 768
     const windowWithOpera = window as Window & { opera?: string }
     const userAgent =
-      navigator.userAgent || navigator.vendor || windowWithOpera.opera || ''
+      navigator.userAgent || navigator.vendor || windowWithOpera.opera || ""
     const mobileRegex =
       /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i
     const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase())
     // A better heuristic for "true mobile" versus just "a laptop with a touchscreen"
     // is to check if it's primarily a touch interface without a fine pointer
-    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches
     return isSmallScreen && (isCoarsePointer || isMobileUserAgent)
   }, [])
 
@@ -58,7 +58,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
   const moveCursor = useCallback((x: number, y: number) => {
     if (!cursorRef.current) return
-    gsap.to(cursorRef.current, { x, y, duration: 0.1, ease: 'power3.out' })
+    gsap.to(cursorRef.current, { x, y, duration: 0.1, ease: "power3.out" })
   }, [])
 
   useEffect(() => {
@@ -68,13 +68,13 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     const root = document.documentElement
     const activeStrength = activeStrengthRef.current
     if (hideDefaultCursor) {
-      document.body.style.cursor = 'none'
-      root.classList.add('cursor-hidden')
+      document.body.style.cursor = "none"
+      root.classList.add("cursor-hidden")
     }
 
     const cursor = cursorRef.current
     cornersRef.current = cursor.querySelectorAll<HTMLDivElement>(
-      '.target-cursor-corner',
+      ".target-cursor-corner"
     )
 
     let resumeTimeout: ReturnType<typeof setTimeout> | null = null
@@ -82,7 +82,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     // Cache all targets
     const updateAllTargets = () => {
       allTargetsRef.current = Array.from(
-        document.querySelectorAll(targetSelector),
+        document.querySelectorAll(targetSelector)
       )
     }
     updateAllTargets()
@@ -110,7 +110,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       }
       spinTl.current = gsap
         .timeline({ repeat: -1 })
-        .to(cursor, { rotation: '+=360', duration: spinDuration, ease: 'none' })
+        .to(cursor, { rotation: "+=360", duration: spinDuration, ease: "none" })
     }
 
     createSpinTimeline()
@@ -125,12 +125,12 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       }
       const strength = activeStrength.current
       if (strength === 0) return
-      const cursorX = gsap.getProperty(cursorRef.current, 'x') as number
-      const cursorY = gsap.getProperty(cursorRef.current, 'y') as number
+      const cursorX = gsap.getProperty(cursorRef.current, "x") as number
+      const cursorY = gsap.getProperty(cursorRef.current, "y") as number
       const corners = Array.from(cornersRef.current)
       corners.forEach((corner, i) => {
-        const currentX = gsap.getProperty(corner, 'x') as number
-        const currentY = gsap.getProperty(corner, 'y') as number
+        const currentX = gsap.getProperty(corner, "x") as number
+        const currentY = gsap.getProperty(corner, "y") as number
         const targetCorner = targetCornerPositionsRef.current?.[i]
         if (!targetCorner) return
         const targetX = targetCorner.x - cursorX
@@ -142,8 +142,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
           x: finalX,
           y: finalY,
           duration: duration,
-          ease: duration === 0 ? 'none' : 'power1.out',
-          overwrite: 'auto',
+          ease: duration === 0 ? "none" : "power1.out",
+          overwrite: "auto",
         })
       })
 
@@ -174,8 +174,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
           x: finalDotX,
           y: finalDotY,
           duration: duration,
-          ease: duration === 0 ? 'none' : 'power1.out',
-          overwrite: 'auto',
+          ease: duration === 0 ? "none" : "power1.out",
+          overwrite: "auto",
         })
       }
     }
@@ -200,7 +200,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
           x: 0,
           y: 0,
           duration: 0.3,
-          ease: 'power3.out',
+          ease: "power3.out",
         })
       }
 
@@ -224,9 +224,9 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
               x: position.x,
               y: position.y,
               duration: 0.3,
-              ease: 'power3.out',
+              ease: "power3.out",
             },
-            0,
+            0
           )
         })
       }
@@ -235,20 +235,20 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         if (!activeTargetRef.current && cursorRef.current && spinTl.current) {
           const currentRotation = gsap.getProperty(
             cursorRef.current,
-            'rotation',
+            "rotation"
           ) as number
           const normalizedRotation = currentRotation % 360
           spinTl.current.kill()
           spinTl.current = gsap.timeline({ repeat: -1 }).to(cursorRef.current, {
-            rotation: '+=360',
+            rotation: "+=360",
             duration: spinDuration,
-            ease: 'none',
+            ease: "none",
           })
 
           gsap.to(cursorRef.current, {
             rotation: normalizedRotation + 360,
             duration: spinDuration * (1 - normalizedRotation / 360),
-            ease: 'none',
+            ease: "none",
             onComplete: () => {
               spinTl.current?.restart()
             },
@@ -274,14 +274,14 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       activeTargetRef.current = target
       const corners = Array.from(cornersRef.current)
       corners.forEach((corner) => gsap.killTweensOf(corner))
-      gsap.killTweensOf(cursorRef.current, 'rotation')
+      gsap.killTweensOf(cursorRef.current, "rotation")
       spinTl.current?.pause()
       gsap.set(cursorRef.current, { rotation: 0 })
 
       const rect = target.getBoundingClientRect()
       const { borderWidth, cornerSize } = constants
-      const cursorX = gsap.getProperty(cursorRef.current, 'x') as number
-      const cursorY = gsap.getProperty(cursorRef.current, 'y') as number
+      const cursorX = gsap.getProperty(cursorRef.current, "x") as number
+      const cursorY = gsap.getProperty(cursorRef.current, "y") as number
 
       const centerX = rect.left + rect.width / 2
       const centerY = rect.top + rect.height / 2
@@ -307,7 +307,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       gsap.to(activeStrength, {
         current: 1,
         duration: hoverDuration,
-        ease: 'power2.out',
+        ease: "power2.out",
       })
 
       corners.forEach((corner, i) => {
@@ -317,33 +317,32 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
           x: targetCorner.x - cursorX,
           y: targetCorner.y - cursorY,
           duration: 0.2,
-          ease: 'power2.out',
+          ease: "power2.out",
         })
       })
     }
 
-      const getProximity = (element: Element) => {
-        let className = ''
-        if (element.classList) {
-           // use classList for robustness, or handle SVGAnimatedString
-           const cn = element.className as string | SVGAnimatedString
-           className = typeof cn === 'object' && 'baseVal' in cn 
-             ? cn.baseVal 
-             : String(cn)
-        }
-        
-        if (!className) return proximity
-
-        const classes = className.split(' ')
-        const proximityClass = classes.find((c) => c.startsWith('proximity-'))
-        if (proximityClass) {
-          const proximityValue = proximityClass.split('-')[1]
-          if (!proximityValue) return proximity
-          const value = parseInt(proximityValue, 10)
-          return isNaN(value) ? proximity : value
-        }
-        return proximity
+    const getProximity = (element: Element) => {
+      let className = ""
+      if (element.classList) {
+        // use classList for robustness, or handle SVGAnimatedString
+        const cn = element.className as string | SVGAnimatedString
+        className =
+          typeof cn === "object" && "baseVal" in cn ? cn.baseVal : String(cn)
       }
+
+      if (!className) return proximity
+
+      const classes = className.split(" ")
+      const proximityClass = classes.find((c) => c.startsWith("proximity-"))
+      if (proximityClass) {
+        const proximityValue = proximityClass.split("-")[1]
+        if (!proximityValue) return proximity
+        const value = parseInt(proximityValue, 10)
+        return isNaN(value) ? proximity : value
+      }
+      return proximity
+    }
 
     const moveHandler = (e: MouseEvent) => {
       moveCursor(e.clientX, e.clientY)
@@ -356,7 +355,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         allTargetsRef.current.forEach((target) => {
           const rect = target.getBoundingClientRect()
           const targetProximity = getProximity(target)
-          
+
           // Calculate distance to the nearest point on the rectangle (clamping)
           const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right)
           const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom)
@@ -372,24 +371,24 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
           activateTarget(closestTarget)
         } else if (activeTargetRef.current) {
           const targetProximity = getProximity(activeTargetRef.current)
-           // Check if we are actually hovering the active target (std mouseover behavior backup)
-           // OR if we are still within the variable proximity of the active target
-           // (This prevents flickering at the edge if we entered via a larger proximity)
-           
-           // Re-calculate distance to active target
-           const rect = activeTargetRef.current.getBoundingClientRect()
-           const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right)
-           const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom)
-           const distance = Math.sqrt(dx * dx + dy * dy)
+          // Check if we are actually hovering the active target (std mouseover behavior backup)
+          // OR if we are still within the variable proximity of the active target
+          // (This prevents flickering at the edge if we entered via a larger proximity)
 
-           if (distance > targetProximity) {
-             deactivateTarget(activeTargetRef.current)
-           }
+          // Re-calculate distance to active target
+          const rect = activeTargetRef.current.getBoundingClientRect()
+          const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right)
+          const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom)
+          const distance = Math.sqrt(dx * dx + dy * dy)
+
+          if (distance > targetProximity) {
+            deactivateTarget(activeTargetRef.current)
+          }
         }
       }
     }
 
-    window.addEventListener('mousemove', moveHandler)
+    window.addEventListener("mousemove", moveHandler)
 
     const scrollHandler = () => {
       if (!activeTargetRef.current || !cursorRef.current) return
@@ -399,8 +398,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       // So we should re-run proximity check actually?
       // Ideally moveHandler logic should run on scroll too.
       // reusing existing logic:
-      const mouseX = gsap.getProperty(cursorRef.current, 'x') as number
-      const mouseY = gsap.getProperty(cursorRef.current, 'y') as number
+      const mouseX = gsap.getProperty(cursorRef.current, "x") as number
+      const mouseY = gsap.getProperty(cursorRef.current, "y") as number
       // We can synthesize a mouse event or just copy the logic.
       // For simplicity, let's just do a basic check similar to original:
 
@@ -420,7 +419,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         // Let's rely on the next mousemove or just let the user move the mouse to update.
       }
     }
-    window.addEventListener('scroll', scrollHandler, { passive: true })
+    window.addEventListener("scroll", scrollHandler, { passive: true })
 
     const mouseDownHandler = () => {
       if (!dotRef.current) return
@@ -434,8 +433,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       gsap.to(cursorRef.current, { scale: 1, duration: 0.2 })
     }
 
-    window.addEventListener('mousedown', mouseDownHandler)
-    window.addEventListener('mouseup', mouseUpHandler)
+    window.addEventListener("mousedown", mouseDownHandler)
+    window.addEventListener("mouseup", mouseUpHandler)
 
     // Fallback for when proximity is 0 or to catch basic hovers efficiently
     const enterHandler = (e: MouseEvent) => {
@@ -468,35 +467,35 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     // We only need this if proximity is 0 really, but it doesn't hurt to have both.
     // If proximity > 0, moveHandler will likely trigger first.
     if (proximity === 0) {
-      window.addEventListener('mouseover', enterHandler as EventListener)
+      window.addEventListener("mouseover", enterHandler as EventListener)
     }
 
     if (proximity > 0) {
-      window.addEventListener('click', clickProxyHandler, { capture: true })
+      window.addEventListener("click", clickProxyHandler, { capture: true })
     }
 
     return () => {
       if (tickerFnRef.current) {
         gsap.ticker.remove(tickerFnRef.current)
       }
-      window.removeEventListener('mousemove', moveHandler)
+      window.removeEventListener("mousemove", moveHandler)
       if (proximity === 0) {
-        window.removeEventListener('mouseover', enterHandler as EventListener)
+        window.removeEventListener("mouseover", enterHandler as EventListener)
       }
       if (proximity > 0) {
-        window.removeEventListener('click', clickProxyHandler, {
+        window.removeEventListener("click", clickProxyHandler, {
           capture: true,
         })
       }
-      window.removeEventListener('scroll', scrollHandler)
-      window.removeEventListener('mousedown', mouseDownHandler)
-      window.removeEventListener('mouseup', mouseUpHandler)
+      window.removeEventListener("scroll", scrollHandler)
+      window.removeEventListener("mousedown", mouseDownHandler)
+      window.removeEventListener("mouseup", mouseUpHandler)
       mutationObserver.disconnect()
 
       spinTl.current?.kill()
       document.body.style.cursor = originalCursor
       if (hideDefaultCursor) {
-        root.classList.remove('cursor-hidden')
+        root.classList.remove("cursor-hidden")
       }
       isActiveRef.current = false
       targetCornerPositionsRef.current = null
@@ -519,9 +518,9 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     if (spinTl.current.isActive()) {
       spinTl.current.kill()
       spinTl.current = gsap.timeline({ repeat: -1 }).to(cursorRef.current, {
-        rotation: '+=360',
+        rotation: "+=360",
         duration: spinDuration,
-        ease: 'none',
+        ease: "none",
       })
     }
   }, [spinDuration, isMobile])
@@ -533,29 +532,29 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-9999"
-      style={{ willChange: 'transform' }}
+      className="pointer-events-none fixed top-0 left-0 z-9999 h-0 w-0"
+      style={{ willChange: "transform" }}
     >
       <div
         ref={dotRef}
-        className="absolute top-1/2 left-1/2 w-1 h-1 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"
-        style={{ willChange: 'transform' }}
+        className="absolute top-1/2 left-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+        style={{ willChange: "transform" }}
       />
       <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 border-[3px] border-white -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
-        style={{ willChange: 'transform' }}
+        className="target-cursor-corner absolute top-1/2 left-1/2 h-3 w-3 -translate-x-[150%] -translate-y-[150%] border-[3px] border-r-0 border-b-0 border-white"
+        style={{ willChange: "transform" }}
       />
       <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 border-[3px] border-white translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0"
-        style={{ willChange: 'transform' }}
+        className="target-cursor-corner absolute top-1/2 left-1/2 h-3 w-3 translate-x-1/2 -translate-y-[150%] border-[3px] border-b-0 border-l-0 border-white"
+        style={{ willChange: "transform" }}
       />
       <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 border-[3px] border-white translate-x-1/2 translate-y-1/2 border-l-0 border-t-0"
-        style={{ willChange: 'transform' }}
+        className="target-cursor-corner absolute top-1/2 left-1/2 h-3 w-3 translate-x-1/2 translate-y-1/2 border-[3px] border-t-0 border-l-0 border-white"
+        style={{ willChange: "transform" }}
       />
       <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 border-[3px] border-white -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0"
-        style={{ willChange: 'transform' }}
+        className="target-cursor-corner absolute top-1/2 left-1/2 h-3 w-3 -translate-x-[150%] translate-y-1/2 border-[3px] border-t-0 border-r-0 border-white"
+        style={{ willChange: "transform" }}
       />
     </div>
   )

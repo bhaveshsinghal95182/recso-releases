@@ -1,52 +1,60 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
-import { HugeiconsIcon } from '@hugeicons/react'
-import { Add01Icon, MinusSignIcon, SearchIcon } from '@hugeicons/core-free-icons'
-import { cn } from '@workspace/ui/lib/utils'
-import { faqs, categories, type FAQItem } from '@/lib/faq-data'
-import { Button } from '@workspace/ui/components/button'
+import { useState } from "react"
+import { motion, AnimatePresence } from "motion/react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import {
+  Add01Icon,
+  MinusSignIcon,
+  SearchIcon,
+} from "@hugeicons/core-free-icons"
+import { cn } from "@workspace/ui/lib/utils"
+import { faqs, categories, type FAQItem } from "@/lib/faq-data"
+import { Button } from "@workspace/ui/components/button"
 
 export function FAQPage() {
-  const [activeCategory, setActiveCategory] = useState('All')
-  const [searchQuery, setSearchQuery] = useState('')
+  const [activeCategory, setActiveCategory] = useState("All")
+  const [searchQuery, setSearchQuery] = useState("")
   const [openId, setOpenId] = useState<string | null>(null)
 
   const filteredFaqs = faqs.filter((faq: FAQItem) => {
-    const matchesCategory = activeCategory === 'All' || faq.category === activeCategory
-    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          (typeof faq.answer === 'string' && faq.answer.toLowerCase().includes(searchQuery.toLowerCase()))
+    const matchesCategory =
+      activeCategory === "All" || faq.category === activeCategory
+    const matchesSearch =
+      faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (typeof faq.answer === "string" &&
+        faq.answer.toLowerCase().includes(searchQuery.toLowerCase()))
     return matchesCategory && matchesSearch
   })
 
   return (
-    <section className="relative pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden bg-background min-h-screen">
+    <section className="relative min-h-screen overflow-hidden bg-background pt-32 pb-24 sm:pt-40 sm:pb-32">
       {/* Background ambient glow */}
-      <div className="absolute top-0 right-0 w-125 h-125 bg-primary/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="max-w-2xl mx-auto text-center mb-16">
+      <div className="pointer-events-none absolute top-0 right-0 h-125 w-125 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[100px]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto mb-16 max-w-2xl text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight instrument-serif-regular text-foreground mb-6"
+            className="instrument-serif-regular mb-6 text-4xl font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl"
           >
-            Frequently Asked <span className="text-primary italic cursor-target">Questions</span>
+            Frequently Asked{" "}
+            <span className="cursor-target text-primary italic">Questions</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground inter-regular"
+            className="inter-regular text-lg text-muted-foreground"
           >
             Everything you need to know about Recso, features, and billing.
           </motion.p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl">
           {/* Controls: Search & Filter */}
-          <div className="flex flex-col md:flex-row gap-4 mb-10 items-center justify-between">
+          <div className="mb-10 flex flex-col items-center justify-between gap-4 md:flex-row">
             {/* Category Pills */}
-            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+            <div className="flex flex-wrap justify-center gap-2 md:justify-start">
               {categories.map((category: string) => (
                 <button
                   key={category}
@@ -55,9 +63,9 @@ export function FAQPage() {
                     setOpenId(null) // Close open items on filter change
                   }}
                   className={cn(
-                    "px-4 py-2 rounded-full text-sm inter-medium transition-all duration-300 ",
+                    "inter-medium rounded-full px-4 py-2 text-sm transition-all duration-300",
                     activeCategory === category
-                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/20 scale-105"
+                      ? "scale-105 bg-primary text-primary-foreground shadow-md shadow-primary/20"
                       : "bg-primary/5 text-muted-foreground hover:bg-primary/10 hover:text-foreground"
                   )}
                 >
@@ -68,15 +76,19 @@ export function FAQPage() {
 
             {/* Search Bar */}
             <div className="relative w-full md:w-64">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <HugeiconsIcon icon={SearchIcon} strokeWidth={2} className="h-4 w-4 text-muted-foreground" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <HugeiconsIcon
+                  icon={SearchIcon}
+                  strokeWidth={2}
+                  className="h-4 w-4 text-muted-foreground"
+                />
               </div>
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2 border border-border rounded-full leading-5 bg-background/50 placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition-all instrument-serif-regular cursor-none cursor-target"
+                className="instrument-serif-regular cursor-target block w-full cursor-none rounded-full border border-border bg-background/50 py-2 pr-3 pl-10 leading-5 placeholder-muted-foreground transition-all focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none sm:text-sm"
               />
             </div>
           </div>
@@ -94,37 +106,49 @@ export function FAQPage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
-                      transition={{ 
+                      transition={{
                         layout: { type: "spring", stiffness: 300, damping: 30 },
                         opacity: { duration: 0.2 },
-                        y: { duration: 0.4, delay: index * 0.05 }
+                        y: { duration: 0.4, delay: index * 0.05 },
                       }}
                       className={cn(
-                        "rounded-2xl border transition-colors duration-300 overflow-hidden cursor-none",
-                        isOpen 
-                          ? "bg-primary/5 border-primary/20 shadow-lg shadow-primary/5" 
-                          : "bg-card border-border hover:border-primary/30"
+                        "cursor-none overflow-hidden rounded-2xl border transition-colors duration-300",
+                        isOpen
+                          ? "border-primary/20 bg-primary/5 shadow-lg shadow-primary/5"
+                          : "border-border bg-card hover:border-primary/30"
                       )}
                     >
                       <button
                         onClick={() => setOpenId(isOpen ? null : faq.id)}
-                        className="flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none cursor-none"
+                        className="flex w-full cursor-none items-center justify-between px-6 py-5 text-left focus:outline-none"
                       >
-                        <span className="text-lg font-medium text-foreground inter-medium pr-8">
+                        <span className="inter-medium pr-8 text-lg font-medium text-foreground">
                           {faq.question}
                         </span>
-                        <div className={cn(
-                          "ml-4 shrink-0 flex items-center justify-center w-8 h-8 rounded-full border transition-all duration-300 cursor-target",
-                          isOpen ? "bg-primary text-primary-foreground border-primary rotate-180" : "bg-transparent text-muted-foreground border-border"
-                        )}>
+                        <div
+                          className={cn(
+                            "cursor-target ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
+                            isOpen
+                              ? "rotate-180 border-primary bg-primary text-primary-foreground"
+                              : "border-border bg-transparent text-muted-foreground"
+                          )}
+                        >
                           {isOpen ? (
-                            <HugeiconsIcon icon={MinusSignIcon} strokeWidth={2} className="h-4 w-4" />
+                            <HugeiconsIcon
+                              icon={MinusSignIcon}
+                              strokeWidth={2}
+                              className="h-4 w-4"
+                            />
                           ) : (
-                            <HugeiconsIcon icon={Add01Icon} strokeWidth={2} className="h-4 w-4" />
+                            <HugeiconsIcon
+                              icon={Add01Icon}
+                              strokeWidth={2}
+                              className="h-4 w-4"
+                            />
                           )}
                         </div>
                       </button>
-                      
+
                       <AnimatePresence>
                         {isOpen && (
                           <motion.div
@@ -133,7 +157,7 @@ export function FAQPage() {
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                           >
-                            <div className="px-6 pb-6 text-muted-foreground inter-regular prose prose-sm dark:prose-invert">
+                            <div className="inter-regular prose prose-sm dark:prose-invert px-6 pb-6 text-muted-foreground">
                               {faq.answer}
                             </div>
                           </motion.div>
@@ -147,20 +171,33 @@ export function FAQPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="text-center py-12"
+                  className="py-12 text-center"
                 >
-                  <p className="text-muted-foreground inter-regular mb-4">No questions found matching your search.</p>
-                  <Button variant="outline" onClick={() => { setSearchQuery(''); setActiveCategory('All') }}>
+                  <p className="inter-regular mb-4 text-muted-foreground">
+                    No questions found matching your search.
+                  </p>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSearchQuery("")
+                      setActiveCategory("All")
+                    }}
+                  >
                     Clear Search
                   </Button>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
-          
+
           <div className="mt-16 text-center">
-            <p className="text-muted-foreground inter-regular mb-4">Still have questions?</p>
-            <Button size="lg" className="cursor-none cursor-target p-2 px-4 h-fit w-fit">
+            <p className="inter-regular mb-4 text-muted-foreground">
+              Still have questions?
+            </p>
+            <Button
+              size="lg"
+              className="cursor-target h-fit w-fit cursor-none p-2 px-4"
+            >
               <a href="mailto:work.bhavesh22@gmail.com">Contact Support</a>
             </Button>
           </div>

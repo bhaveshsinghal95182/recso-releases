@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef } from "react"
 import {
   motion,
   useScroll,
@@ -8,32 +8,32 @@ import {
   useVelocity,
   useAnimationFrame,
   wrap,
-} from 'motion/react'
+} from "motion/react"
 
-import ElectronLogo from './logos/electron'
-import FfmpegLogo from './logos/ffmpeg'
-import RemotionLogo from './logos/remotion'
-import TailwindCSS from './logos/tailwindcss'
-import VercelLogo from './logos/vercel'
-import ViteLogo from './logos/vite'
+import ElectronLogo from "./logos/electron"
+import FfmpegLogo from "./logos/ffmpeg"
+import RemotionLogo from "./logos/remotion"
+import TailwindCSS from "./logos/tailwindcss"
+import VercelLogo from "./logos/vercel"
+import ViteLogo from "./logos/vite"
 
 const logos = [
-  { Component: ElectronLogo, name: 'Electron' },
-  { Component: FfmpegLogo, name: 'Ffmpeg' },
-  { Component: RemotionLogo, name: 'Remotion' },
-  { Component: TailwindCSS, name: 'TailwindCSS' },
-  { Component: VercelLogo, name: 'Vercel' },
-  { Component: ViteLogo, name: 'Vite' },
+  { Component: ElectronLogo, name: "Electron" },
+  { Component: FfmpegLogo, name: "Ffmpeg" },
+  { Component: RemotionLogo, name: "Remotion" },
+  { Component: TailwindCSS, name: "TailwindCSS" },
+  { Component: VercelLogo, name: "Vercel" },
+  { Component: ViteLogo, name: "Vite" },
 ]
 
 function LogoItem({
   Component,
 }: {
-  Component: (typeof logos)[number]['Component']
+  Component: (typeof logos)[number]["Component"]
   name: string
 }) {
   return (
-    <div className="flex items-center gap-3 px-12 shrink-0 grayscale hover:grayscale-0 transition-all duration-300 ">
+    <div className="flex shrink-0 items-center gap-3 px-12 grayscale transition-all duration-300 hover:grayscale-0">
       <Component width={64} height={64} />
       {/* <span className="text-muted-foreground text-lg inter-regular whitespace-nowrap">
         {name}
@@ -84,14 +84,14 @@ export default function PoweredBy() {
   })
 
   return (
-    <div className="snap-start min-h-screen w-full bg-background flex flex-col items-center justify-center gap-12 overflow-hidden mt-16">
-      <h2 className="text-muted-foreground text-sm tracking-widest uppercase inter-regular">
+    <div className="mt-16 flex min-h-screen w-full snap-start flex-col items-center justify-center gap-12 overflow-hidden bg-background">
+      <h2 className="inter-regular text-sm tracking-widest text-muted-foreground uppercase">
         Powered By
       </h2>
 
-      <div className="relative w-full flex items-center">
+      <div className="relative flex w-full items-center">
         {/* Left fade/blur */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-linear-to-r from-background to-transparent backdrop-blur-[2px] mask-[linear-gradient(to_right,black,transparent)]" />
+        <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-32 bg-linear-to-r from-background to-transparent mask-[linear-gradient(to_right,black,transparent)] backdrop-blur-[2px]" />
 
         <div className="w-full overflow-hidden">
           <motion.div
@@ -111,13 +111,13 @@ export default function PoweredBy() {
                   Component={logo.Component}
                   name={logo.name}
                 />
-              )),
+              ))
             )}
           </motion.div>
         </div>
 
         {/* Right fade/blur */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-linear-to-l from-background to-transparent backdrop-blur-[2px] mask-[linear-gradient(to_left,black,transparent)]" />
+        <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-32 bg-linear-to-l from-background to-transparent mask-[linear-gradient(to_left,black,transparent)] backdrop-blur-[2px]" />
       </div>
     </div>
   )

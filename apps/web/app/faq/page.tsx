@@ -1,4 +1,5 @@
-'use client'
-import { FAQPage } from "@/components/faq-page";
+"use client"
+import { FAQPage } from "@/components/faq-page"
 
-export default FAQPage;
+export default FAQPage
+

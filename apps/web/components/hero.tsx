@@ -1,8 +1,8 @@
-import Windows from './svgs/windows'
+import Windows from "./svgs/windows"
 
 export default function Hero() {
   return (
-    <div className="min-h-[calc(100vh-4rem)] snap-center h-full w-full bg-black relative">
+    <div className="relative h-full min-h-[calc(100vh-4rem)] w-full snap-center bg-black">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -14,31 +14,34 @@ export default function Hero() {
         }}
       />
       <div className="relative z-10">
-        <div className="max-w-full flex flex-col items-center pt-20 md:pt-32 gap-6 px-4 sm:px-6">
-          <h1 className="inter-regular text-5xl sm:text-6xl md:text-7xl tracking-tight text-center">
-            Create{' '}
-            <span className="instrument-serif-regular text-primary cursor-target">
+        <div className="flex max-w-full flex-col items-center gap-6 px-4 pt-20 sm:px-6 md:pt-32">
+          <h1 className="inter-regular text-center text-5xl tracking-tight sm:text-6xl md:text-7xl">
+            Create{" "}
+            <span className="instrument-serif-regular cursor-target text-primary">
               Cinematic
-            </span>{' '}
-            Product Demos{' '}
+            </span>{" "}
+            Product Demos{" "}
             <span className="block text-center">
-              <span className="text-primary cursor-target">in Seconds</span>
+              <span className="cursor-target text-primary">in Seconds</span>
             </span>
           </h1>
-          <a href="https://apps.microsoft.com/detail/9P697TXC3BCL?hl=en-us&gl=IN&ocid=pdpshare" className="magnet-target proximity-40 cursor-none text-xl tracking-tighter bg-primary text-background px-4 py-2 rounded-sm flex items-center gap-2 inter-semibold shadow-lg shadow-background/10 mt-8">
+          <a
+            href="https://apps.microsoft.com/detail/9P697TXC3BCL?hl=en-us&gl=IN&ocid=pdpshare"
+            className="magnet-target proximity-40 inter-semibold mt-8 flex cursor-none items-center gap-2 rounded-sm bg-primary px-4 py-2 text-xl tracking-tighter text-background shadow-lg shadow-background/10"
+          >
             <Windows size="30" />
             Start Creating for Free
           </a>
-          <p className="text-muted-foreground inter-regular text-xs -mt-4">
+          <p className="inter-regular -mt-4 text-xs text-muted-foreground">
             7 days free • No credit card required
           </p>
-          <div className="pt-8 md:pt-12 w-full max-w-5xl px-2 sm:px-6">
+          <div className="w-full max-w-5xl px-2 pt-8 sm:px-6 md:pt-12">
             <video
               src="/demo.mp4"
               autoPlay
               loop
               muted
-              className="w-full h-auto aspect-video border-4 md:border-8 border-border object-cover rounded-lg shadow-2xl"
+              className="aspect-video h-auto w-full rounded-lg border-4 border-border object-cover shadow-2xl md:border-8"
             />
           </div>
         </div>

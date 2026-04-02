@@ -1,6 +1,6 @@
 "use client"
-import { motion, AnimatePresence, useAnimationControls } from 'motion/react'
-import { useState, useEffect } from 'react'
+import { motion, AnimatePresence, useAnimationControls } from "motion/react"
+import { useState, useEffect } from "react"
 import {
   Wand2,
   Video,
@@ -10,49 +10,49 @@ import {
   MonitorPlay,
   ChevronLeft,
   ChevronRight,
-} from 'lucide-react'
+} from "lucide-react"
 
 const features = [
   {
-    name: 'Screen Recorder',
-    heading: 'pixel-perfect.',
+    name: "Screen Recorder",
+    heading: "pixel-perfect.",
     description:
-      'Built-in native screen recording capturing crisp details up to 50 Mbps in MP4, MKV, or WebM.',
+      "Built-in native screen recording capturing crisp details up to 50 Mbps in MP4, MKV, or WebM.",
     icon: Video,
   },
   {
-    name: 'Linear Video Editor',
-    heading: 'seamless workflows.',
+    name: "Linear Video Editor",
+    heading: "seamless workflows.",
     description:
-      'Every project is a folder. Open it, and your video is instantly imported onto a single, snappy timeline.',
+      "Every project is a folder. Open it, and your video is instantly imported onto a single, snappy timeline.",
     icon: FolderOpenDot,
   },
   {
-    name: 'Magic Regions',
-    heading: 'effortless tracking.',
+    name: "Magic Regions",
+    heading: "effortless tracking.",
     description:
-      'Drag, drop, and resize UI for cuts and zooms. Click once to make the region flawlessly track your cursor.',
+      "Drag, drop, and resize UI for cuts and zooms. Click once to make the region flawlessly track your cursor.",
     icon: MousePointerClick,
   },
   {
-    name: '3-Click Demos',
-    heading: 'cinematic motion.',
+    name: "3-Click Demos",
+    heading: "cinematic motion.",
     description:
-      'Say goodbye to complex keyframes. Create stunning cinematics, zooms, and panning effects with just three clicks.',
+      "Say goodbye to complex keyframes. Create stunning cinematics, zooms, and panning effects with just three clicks.",
     icon: Wand2,
   },
   {
-    name: 'Lossless Export',
-    heading: 'stunning fidelity.',
+    name: "Lossless Export",
+    heading: "stunning fidelity.",
     description:
-      'Export your final masterpiece at up to 4K 60fps. Ready to share on the web with stunning fidelity.',
+      "Export your final masterpiece at up to 4K 60fps. Ready to share on the web with stunning fidelity.",
     icon: Gauge,
   },
   {
-    name: 'Custom Backgrounds',
-    heading: 'brand identity.',
+    name: "Custom Backgrounds",
+    heading: "brand identity.",
     description:
-      'Wrap your video in solid colors, premium built-in patterns, or bring any custom JSX element from patterncraft.fun.',
+      "Wrap your video in solid colors, premium built-in patterns, or bring any custom JSX element from patterncraft.fun.",
     icon: MonitorPlay,
   },
 ]
@@ -75,8 +75,8 @@ export function Features() {
     const startProgress = async () => {
       // The ease linear is crucial here so that a 5s duration actually looks steady.
       await progressControls.start({
-        width: '100%',
-        transition: { duration: 5, ease: 'linear' },
+        width: "100%",
+        transition: { duration: 5, ease: "linear" },
       })
       // When animation finishes naturally (not stopped by hover or unmount), go to next slide.
       if (!isHovered) {
@@ -90,17 +90,17 @@ export function Features() {
   }, [activeIndex, isHovered, progressControls])
 
   const handleNext = () => {
-    progressControls.set({ width: '0%' })
+    progressControls.set({ width: "0%" })
     setActiveIndex((prev) => (prev + 1) % features.length)
   }
 
   const handlePrev = () => {
-    progressControls.set({ width: '0%' })
+    progressControls.set({ width: "0%" })
     setActiveIndex((prev) => (prev - 1 + features.length) % features.length)
   }
 
   const handleDotClick = (idx: number) => {
-    progressControls.set({ width: '0%' })
+    progressControls.set({ width: "0%" })
     setActiveIndex(idx)
   }
 
@@ -110,21 +110,21 @@ export function Features() {
   return (
     <section
       id="features"
-      className="relative bg-background py-24 md:py-32 overflow-hidden flex items-center min-h-[80vh]"
+      className="relative flex min-h-[80vh] items-center overflow-hidden bg-background py-24 md:py-32"
     >
-      <div className="absolute inset-0 pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0" />
       {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/5 blur-[120px]" />
 
-      <div className="mx-auto w-full max-w-7xl px-6 lg:px-12 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-24">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-12 px-6 md:flex-row lg:gap-24 lg:px-12">
         {/* Left Side: Header & Context */}
-        <div className="w-full md:w-5/12 text-center md:text-left flex flex-col items-center md:items-start">
+        <div className="flex w-full flex-col items-center text-center md:w-5/12 md:items-start md:text-left">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-foreground instrument-serif-regular mb-6"
+            className="instrument-serif-regular mb-6 text-4xl font-medium tracking-tight text-foreground md:text-6xl lg:text-7xl"
           >
             Everything you need,
             <br />
@@ -135,10 +135,12 @@ export function Features() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -40 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   className="absolute inset-0 text-brand italic"
                 >
-                  <span className="cursor-target">{activeFeature?.heading}</span>
+                  <span className="cursor-target">
+                    {activeFeature?.heading}
+                  </span>
                 </motion.span>
               </AnimatePresence>
             </div>
@@ -149,7 +151,7 @@ export function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg leading-relaxed text-muted-foreground inter-regular mb-10 max-w-lg"
+            className="inter-regular mb-10 max-w-lg text-lg leading-relaxed text-muted-foreground"
           >
             Discover how Recso combines a powerful screen recorder with an
             intuitive timeline editor. Fast, sleek, and native.
@@ -165,21 +167,21 @@ export function Features() {
           >
             <button
               onClick={handlePrev}
-              className="p-3 md:p-4 rounded-full bg-brand/5 hover:bg-brand/10 text-foreground/80 hover:text-brand transition-all border border-brand/10 hover:border-brand/30 cursor-none cursor-target"
+              className="cursor-target cursor-none rounded-full border border-brand/10 bg-brand/5 p-3 text-foreground/80 transition-all hover:border-brand/30 hover:bg-brand/10 hover:text-brand md:p-4"
               aria-label="Previous feature"
             >
               <ChevronLeft
-                className="w-5 h-5 md:w-6 md:h-6"
+                className="h-5 w-5 md:h-6 md:w-6"
                 strokeWidth={2.5}
               />
             </button>
             <button
               onClick={handleNext}
-              className="p-3 md:p-4 rounded-full bg-brand/5 hover:bg-brand/10 text-foreground/80 hover:text-brand transition-all border border-brand/10 hover:border-brand/30 cursor-none cursor-target"
+              className="cursor-target cursor-none rounded-full border border-brand/10 bg-brand/5 p-3 text-foreground/80 transition-all hover:border-brand/30 hover:bg-brand/10 hover:text-brand md:p-4"
               aria-label="Next feature"
             >
               <ChevronRight
-                className="w-5 h-5 md:w-6 md:h-6"
+                className="h-5 w-5 md:h-6 md:w-6"
                 strokeWidth={2.5}
               />
             </button>
@@ -188,25 +190,25 @@ export function Features() {
 
         {/* Right Side: Interactive Feature Display */}
         <div
-          className="w-full md:w-6/12 relative h-[450px] md:h-[500px] cursor-target"
+          className="cursor-target relative h-[450px] w-full md:h-[500px] md:w-6/12"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Main Interactive Display Box */}
-          <div className="absolute inset-0 rounded-[2.5rem] bg-brand/5 border border-brand/10 shadow-2xl backdrop-blur-3xl overflow-hidden flex flex-col p-6 sm:p-10 lg:p-14">
+          <div className="absolute inset-0 flex flex-col overflow-hidden rounded-[2.5rem] border border-brand/10 bg-brand/5 p-6 shadow-2xl backdrop-blur-3xl sm:p-10 lg:p-14">
             {/* Progress Indicators */}
-            <div className="w-full flex gap-2 mb-10">
+            <div className="mb-10 flex w-full gap-2">
               {features.map((_, idx) => (
                 <button
                   key={idx}
-                  className="h-1.5 flex-1 rounded-full bg-foreground/10 overflow-hidden hover:bg-foreground/20 transition-colors relative cursor-none cursor-target"
+                  className="cursor-target relative h-1.5 flex-1 cursor-none overflow-hidden rounded-full bg-foreground/10 transition-colors hover:bg-foreground/20"
                   onClick={() => handleDotClick(idx)}
                   aria-label={`Go to feature ${idx + 1}`}
                 >
                   {idx === activeIndex && (
                     <motion.div
                       className="absolute inset-y-0 left-0 bg-brand"
-                      initial={{ width: '0%' }}
+                      initial={{ width: "0%" }}
                       animate={progressControls}
                     />
                   )}
@@ -218,31 +220,31 @@ export function Features() {
             </div>
 
             {/* Dynamic Content with Smooth Cross-fades */}
-            <div className="flex-1 flex flex-col justify-center relative">
+            <div className="relative flex flex-1 flex-col justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeFeature?.name}
                   initial={{ opacity: 0, y: 20, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="absolute inset-0 flex flex-col justify-center pointer-events-auto z-10"
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="pointer-events-auto absolute inset-0 z-10 flex flex-col justify-center"
                 >
-                  <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-2xl bg-brand/10 ring-1 ring-brand/20 mb-6 md:mb-8 overflow-hidden shadow-lg shadow-brand/20">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-brand/10 shadow-lg ring-1 shadow-brand/20 ring-brand/20 md:mb-8 md:h-20 md:w-20">
                     <motion.div
                       animate={{ rotate: [0, -10, 10, -5, 5, 0] }}
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
                       <ActiveIcon
-                        className="h-8 w-8 md:h-10 md:w-10 text-brand"
+                        className="h-8 w-8 text-brand md:h-10 md:w-10"
                         strokeWidth={1.5}
                       />
                     </motion.div>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-medium text-foreground instrument-serif-regular mb-3 md:mb-4">
+                  <h3 className="instrument-serif-regular mb-3 text-3xl font-medium text-foreground md:mb-4 md:text-4xl">
                     {activeFeature?.name}
                   </h3>
-                  <p className="text-lg md:text-xl leading-relaxed text-muted-foreground inter-regular max-w-md">
+                  <p className="inter-regular max-w-md text-lg leading-relaxed text-muted-foreground md:text-xl">
                     {activeFeature?.description}
                   </p>
                 </motion.div>
@@ -259,9 +261,9 @@ export function Features() {
             transition={{
               duration: 2,
               repeat: Infinity,
-              repeatType: 'reverse',
+              repeatType: "reverse",
             }}
-            className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-brand/20 rounded-full blur-[100px] -z-10"
+            className="absolute -top-20 -right-20 -z-10 h-[300px] w-[300px] rounded-full bg-brand/20 blur-[100px]"
           />
         </div>
       </div>
