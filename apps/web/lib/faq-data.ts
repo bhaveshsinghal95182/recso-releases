@@ -18,16 +18,9 @@ export const faqs: FAQItem[] = [
   {
     id: "2",
     category: "General",
-    question: "What happens after the 7-day free trial?",
+    question: "Is Recso free?",
     answer:
-      "After 7 days, your trial will automatically convert to the paid version unless cancelled. You will retain all your projects and settings. We do not place watermarks on your videos during the trial period.",
-  },
-  {
-    id: "3",
-    category: "Features",
-    question: "Can I import existing videos, or only screen record?",
-    answer:
-      "You can easily import any standard MP4, MKV, or WebM video file directly onto the timeline. You don't have to use the built-in screen recorder if you already have footage.",
+      "Yes. Recso is free right now with all the shiny features included. If you are an enterprise customer, contact us on X or LinkedIn and we can talk through the features you want and the price you are ready to pay.",
   },
   {
     id: "4",
@@ -42,20 +35,6 @@ export const faqs: FAQItem[] = [
     question: "What are the export limitations?",
     answer:
       "There are no artificial limits. You can export up to 4K resolution at a crisp 60fps. The only limitation is your hardware's encoding capabilities.",
-  },
-  {
-    id: "6",
-    category: "Export",
-    question: "Why is export time so high?",
-    answer:
-      "Recso currently uses remotion which is like taking a screen shot at each frame and rendering it. This is not efficient and we are working on a better solution.",
-  },
-  {
-    id: "7",
-    category: "Pricing",
-    question: "Is it a one-time purchase or a subscription?",
-    answer:
-      "Recso Pro is currently available as a highly affordable subscription to support continuous development and updates. Check the Microsoft Store page for the most up-to-date pricing in your region.",
   },
 ]
 

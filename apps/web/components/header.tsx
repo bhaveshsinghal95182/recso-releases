@@ -8,7 +8,7 @@ import { MobileNav } from "@/components/mobile-nav"
 export const navLinks = [
   {
     label: "Features",
-    href: "/#features",
+    href: "/features",
   },
   {
     label: "Pricing",

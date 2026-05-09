@@ -2,58 +2,58 @@
 import { motion, AnimatePresence, useAnimationControls } from "motion/react"
 import { useState, useEffect } from "react"
 import {
-  Wand2,
-  Video,
-  MousePointerClick,
-  FolderOpenDot,
+  Webcam,
+  Monitor,
+  Mic,
+  MousePointer2,
   Gauge,
-  MonitorPlay,
+  Sparkles,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react"
 
 const features = [
   {
-    name: "Screen Recorder",
-    heading: "pixel-perfect.",
+    name: "Webcam Capture",
+    heading: "face-cam ready.",
     description:
-      "Built-in native screen recording capturing crisp details up to 50 Mbps in MP4, MKV, or WebM.",
-    icon: Video,
+      "Record your face cam alongside your demo so your audience sees both the product and the presenter.",
+    icon: Webcam,
   },
   {
-    name: "Linear Video Editor",
-    heading: "seamless workflows.",
+    name: "Desktop Capture",
+    heading: "desktop aware.",
     description:
-      "Every project is a folder. Open it, and your video is instantly imported onto a single, snappy timeline.",
-    icon: FolderOpenDot,
+      "Capture a full display or a single app window when you want a tighter, cleaner demo.",
+    icon: Monitor,
   },
   {
-    name: "Magic Regions",
-    heading: "effortless tracking.",
+    name: "Mic Audio",
+    heading: "voice included.",
     description:
-      "Drag, drop, and resize UI for cuts and zooms. Click once to make the region flawlessly track your cursor.",
-    icon: MousePointerClick,
+      "Record narration directly with your screen capture so the final demo stays synced and understandable.",
+    icon: Mic,
   },
   {
-    name: "3-Click Demos",
-    heading: "cinematic motion.",
+    name: "Custom Cursors",
+    heading: "pointer polish.",
     description:
-      "Say goodbye to complex keyframes. Create stunning cinematics, zooms, and panning effects with just three clicks.",
-    icon: Wand2,
+      "Show, hide, or stylize the cursor so clicks and motion feel intentional in every recording.",
+    icon: MousePointer2,
   },
   {
     name: "Lossless Export",
-    heading: "stunning fidelity.",
+    heading: "quality intact.",
     description:
-      "Export your final masterpiece at up to 4K 60fps. Ready to share on the web with stunning fidelity.",
+      "Export polished demos at up to 4K 60fps so the final result stays sharp and ready to share.",
     icon: Gauge,
   },
   {
     name: "Custom Backgrounds",
-    heading: "brand identity.",
+    heading: "brand ready.",
     description:
-      "Wrap your video in solid colors, premium built-in patterns, or bring any custom JSX element from patterncraft.fun.",
-    icon: MonitorPlay,
+      "Use solid colors, built-in patterns, or custom JSX backgrounds to keep the visual style on brand.",
+    icon: Sparkles,
   },
 ]
 
@@ -105,7 +105,7 @@ export function Features() {
   }
 
   const activeFeature = features[activeIndex]
-  const ActiveIcon = activeFeature?.icon ?? Video
+  const ActiveIcon = activeFeature?.icon ?? Webcam
 
   return (
     <section
@@ -153,8 +153,9 @@ export function Features() {
             transition={{ delay: 0.2 }}
             className="inter-regular mb-10 max-w-lg text-lg leading-relaxed text-muted-foreground"
           >
-            Discover how Recso combines a powerful screen recorder with an
-            intuitive timeline editor. Fast, sleek, and native.
+            Recso gives you the tools to record with webcam, desktop, mic audio,
+            and custom cursor support, then export clean demos with on-brand
+            backgrounds and high-quality output.
           </motion.p>
 
           {/* Navigation Arrows */}

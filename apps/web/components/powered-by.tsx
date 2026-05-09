@@ -11,16 +11,12 @@ import {
 } from "motion/react"
 
 import ElectronLogo from "./logos/electron"
-import FfmpegLogo from "./logos/ffmpeg"
-import RemotionLogo from "./logos/remotion"
 import TailwindCSS from "./logos/tailwindcss"
 import VercelLogo from "./logos/vercel"
 import ViteLogo from "./logos/vite"
 
 const logos = [
   { Component: ElectronLogo, name: "Electron" },
-  { Component: FfmpegLogo, name: "Ffmpeg" },
-  { Component: RemotionLogo, name: "Remotion" },
   { Component: TailwindCSS, name: "TailwindCSS" },
   { Component: VercelLogo, name: "Vercel" },
   { Component: ViteLogo, name: "Vite" },

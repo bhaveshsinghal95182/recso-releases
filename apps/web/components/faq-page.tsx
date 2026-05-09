@@ -10,6 +10,7 @@ import {
 import { cn } from "@workspace/ui/lib/utils"
 import { faqs, categories, type FAQItem } from "@/lib/faq-data"
 import { Button } from "@workspace/ui/components/button"
+import Link from "next/link"
 
 export function FAQPage() {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -199,7 +200,7 @@ export function FAQPage() {
               size="lg"
               className="cursor-target h-fit w-fit cursor-none p-2 px-4"
             >
-              <a href="mailto:work.bhavesh22@gmail.com">Contact Support</a>
+              <Link href="https://x.com/Recsoapp">Contact Support</Link>
             </Button>
           </div>
         </div>
